@@ -57,9 +57,14 @@ const mongoDBName = process.env.mongoDBName || 'ACME-Explorer'
 const mongoDBURI = 'mongodb://' + mongoDBHostname + ':' + mongoDBPort + '/' + mongoDBName
 
 // const mongoDBURI = 'mongodb://' + mongoDBCredentials + mongoDBHostname + ':' + mongoDBPort + '/' + mongoDBName
+const MONGOURL = process.env.MONGOURL || ''
 
 // TODO: Descomentar si no se tiene usuario creado en la bd
-mongoose.connect(mongoDBURI)
+if(MONGOURL){
+  mongoose.connect(MONGOURL)
+}else{
+  mongoose.connect(mongoDBURI)
+}
 
 //TODO: Si no se tiene usuario en la bd, diapositivas 9 y 10 de NoSQL Features and JSON Storage
 // mongoose.connect(mongoDBURI, {
